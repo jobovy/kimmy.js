@@ -1,0 +1,19 @@
+{
+  "name": "kimmy",
+  "version": "1.0.0",
+  "description": "Javascript version of kimmy, Galactic chemical evolution library",
+  "main": "src/kimmy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobovy/kimmy.js.git"
+  },
+  "author": "Jo Bovy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jobovy/kimmy.js/issues"
+  },
+  "homepage": "https://github.com/jobovy/kimmy.js#readme"
+}
