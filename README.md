@@ -2,6 +2,7 @@
 Javascript version of kimmy, Galactic chemical evolution in python
 
 [![npm version](https://badge.fury.io/js/%40jobovy%2Fkimmy.svg)](https://badge.fury.io/js/%40jobovy%2Fkimmy)
+[![jsDelivr](https://badgen.net/jsdelivr/v/npm/@jobovy/kimmy)](https://www.jsdelivr.com/package/npm/@jobovy/kimmy)
 
 ## Overview
 
@@ -15,6 +16,15 @@ in ``kimmy.py`` as of 12/25/2019.
 Jo Bovy (University of Toronto): bovy - at - astro - dot - utoronto - dot - ca
 
 ## Usage
+
+Load the library, e.g., from ``jsDelivr`` using
+```
+<script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy"></script>
+```
+for the latest version or specify the version with (update ``1.0.1`` to later versions as necessary)
+```
+<script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy@1.0.1"></script>
+```
 
 Currently, the only implemented feature is a simple one-zone chemical
 model with two elements ``O`` (for oxygen) and ``Fe`` (for
