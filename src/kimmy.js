@@ -1,4 +1,4 @@
-(function(window) {
+(function() {
     var Kimmy = window.Kimmy = {};
 
     ////////////// OneZone model from Weinberg et al. (2017)  /////////////////
@@ -318,4 +318,4 @@ tau_SFE = ${this._tau_SFE}`;
 	}
     };
     Kimmy.OneZone.ozclass.init.prototype= Kimmy.OneZone.ozclass;
-})(window || this);
+})();
