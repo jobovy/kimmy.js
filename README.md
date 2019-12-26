@@ -34,7 +34,6 @@ var times= Array.apply(null, {length: Ntimes}).map(Number.call, Number).map\
 // Obtain the evolution
 var OFe= oz.O_Fe(times);
 var FeH= oz.Fe_H(times);
-}
 ```
 
 You can directly update the main parameters of the model and the model
