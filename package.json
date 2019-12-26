@@ -1,6 +1,6 @@
 {
   "name": "@jobovy/kimmy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Javascript version of kimmy, Galactic chemical evolution library",
   "main": "src/kimmy.js",
   "scripts": {
