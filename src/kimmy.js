@@ -18,21 +18,53 @@
 			    'solar_O':   8.69,
 			    'solar_Fe':  7.47}
 
-    Kimmy.OneZone = function (eta=_OneZone_defaults['eta'],
-			      tau_SFE=_OneZone_defaults['tau_SFE'],
-			      tau_SFH=_OneZone_defaults['tau_SFH'],
-			      tau_Ia=_OneZone_defaults['tau_Ia'],
-			      min_dt_Ia=_OneZone_defaults['min_dt_Ia'],
-			      sfh=_OneZone_defaults['sfh'],
-			      mCC_O=_OneZone_defaults['mCC_O'],
-			      mCC_Fe=_OneZone_defaults['mCC_Fe'],
-			      mIa_O=_OneZone_defaults['mIa_O'],
-			      mIa_Fe=_OneZone_defaults['mIa_Fe'],
-			      r=_OneZone_defaults['r'],
-			      tau_Ia_2=_OneZone_defaults['tau_Ia_2'],
-			      frac_Ia_2=_OneZone_defaults['frac_Ia_2'],
-			      solar_O=_OneZone_defaults['solar_O'],
-			      solar_Fe=_OneZone_defaults['solar_Fe']) {
+    Kimmy.OneZone = function (eta,
+			      tau_SFE,
+			      tau_SFH,
+			      tau_Ia,
+			      min_dt_Ia,
+			      sfh,
+			      mCC_O,
+			      mCC_Fe,
+			      mIa_O,
+			      mIa_Fe,
+			      r,
+			      tau_Ia_2,
+			      frac_Ia_2,
+			      solar_O,
+			      solar_Fe) {
+	// Set default parameters
+	eta       = ((typeof eta !== 'undefined') ? 
+		     eta : _OneZone_defaults['eta']);
+	tau_SFE   = ((typeof tau_SFE !== 'undefined') ? 
+		     tau_SFE  : _OneZone_defaults['tau_SFE']);
+	tau_SFH   = ((typeof tau_SFH !== 'undefined') ?  
+		     tau_SFH : _OneZone_defaults['tau_SFH']);
+	tau_Ia    = ((typeof tau_Ia !== 'undefined') ? 
+		     tau_Ia : _OneZone_defaults['tau_Ia']);
+	min_dt_Ia = ((typeof min_dt_Ia !== 'undefined') ? 
+		     min_dt_Ia : _OneZone_defaults['min_dt_Ia']);
+	sfh       = ((typeof sfh !== 'undefined') ? 
+		     sfh : _OneZone_defaults['sfh']);
+	mCC_O     = ((typeof mCC_O !== 'undefined') ?
+		     mCC_O : _OneZone_defaults['mCC_O']);
+	mCC_Fe    = ((typeof mCC_Fe !== 'undefined') ? 
+		     mCC_Fe : _OneZone_defaults['mCC_Fe']);
+	mIa_O     = ((typeof mIa_O !== 'undefined') ? 
+		     mIa_O : _OneZone_defaults['mIa_O']);
+	mIa_Fe    = ((typeof mIa_Fe !== 'undefined') ? 
+		     mIa_Fe : _OneZone_defaults['mIa_Fe']);
+	r         = ((typeof r !== 'undefined') ? 
+		     r : _OneZone_defaults['r']);
+	tau_Ia_2  = ((typeof tau_Ia_2 !== 'undefined') ? 
+		     tau_Ia_2 : _OneZone_defaults['tau_Ia_2']);
+	frac_Ia_2 = ((typeof frac_Ia_2 !== 'undefined') ? 
+		     frac_Ia_2 : _OneZone_defaults['frac_Ia_2']);
+	solar_O   = ((typeof solar_O !== 'undefined') ? 
+		     solar_O : _OneZone_defaults['solar_O']);
+	solar_Fe  = ((typeof solar_Fe !== 'undefined') ? 
+		     solar_Fe : _OneZone_defaults['solar_Fe']);
+	// Initialize
 	return new Kimmy.OneZone.ozclass.init(eta,tau_SFE,tau_SFH,tau_Ia,
 					      min_dt_Ia,sfh,mCC_O,mCC_Fe,
 					      mIa_O,mIa_Fe,r,tau_Ia_2,
