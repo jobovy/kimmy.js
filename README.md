@@ -1,6 +1,8 @@
 # kimmy.js
 Javascript version of kimmy, Galactic chemical evolution in python
 
+[![npm version](https://badge.fury.io/js/%40jobovy%2Fkimmy.svg)](https://badge.fury.io/js/%40jobovy%2Fkimmy)
+
 ## Overview
 
 This is a stand-alone Javascript version of the
