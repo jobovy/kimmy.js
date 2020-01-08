@@ -16,7 +16,21 @@
 			    'tau_Ia_2':  null,
 			    'frac_Ia_2': 0.522,
 			    'solar_O':   8.69,
-			    'solar_Fe':  7.47}
+			    'solar_Fe':  7.47,
+			    // MDF calculation defaults
+                            'dFeH':      0.05,
+                            'FeHmin':    -2.0,
+                            'FeHmax':    0.5,
+                            'dOH':      0.05,
+                            'OHmin':    -2.0,
+                            'OHmax':    0.5,
+                            'dOFe':      0.02,
+                            'OFemin':    -0.1,
+                            'OFemax':    0.5,
+                            'Ntimes':    2001,
+                            'min_age':   0.001,//Gyr
+                            'max_age':   12.,  //Gyr
+    }
 
     Kimmy.OneZone = function (eta,
 			      tau_SFE,
@@ -315,7 +329,80 @@ tau_SFE = ${this._tau_SFE}`;
 	O_Fe(times) {
 	    var tFe_H= this.Fe_H(times);
 	    return this.O_H(times).map( (x,i) => x - tFe_H[i]);
-	}
+	},
+	// Generic function to compute the DF of a certain element (ratio)
+	_calc_XDF(elem_func,dFeH,FeHmin,FeHmax,Ntimes,min_age,max_age) {
+	    // Set defaults
+	    Ntimes= ((typeof Ntimes !== 'undefined') 
+		     ? Ntimes : _OneZone_defaults['Ntimes']);
+	    min_age= ((typeof min_age !== 'undefined') 
+		     ? min_age : _OneZone_defaults['min_age']);
+	    max_age= ((typeof max_age !== 'undefined') 
+		     ? max_age : _OneZone_defaults['max_age']);
+	    var nFeHbins= Math.round((FeHmax-FeHmin)/dFeH);
+	    // Calculate [Fe/H] on a fine grid of times
+	    // Setup times where the model is calculated at
+	    var log10_min_age= Math.log10(min_age);
+	    var log10_max_age= Math.log10(max_age);
+	    var times= (Array.apply(null, {length: Ntimes})
+			.map(Number.call, Number)
+			.map(x => log10_min_age+x
+			     *(log10_max_age-log10_min_age)/(Ntimes-1.))
+			.map(x => Math.pow(10.,x)));    
+	    // Calculate the element ratio whose distribution we want
+	    var tX= elem_func(times);
+	    // Now need to histogram these with weights SFR x times
+	    var tSFRlnt;
+	    if ( this.sfh == 'exp' )
+		tSFRlnt= times.map(x => x*Math.exp(-x/this.tau_SFH));
+	    var binFeH= tX.map(x => Math.round((x-FeHmin)/dFeH));
+	    // An array of zeros for accumulating the results
+	    var out= (Array.apply(null, {length: nFeHbins}).map(x=>0.));
+
+	    for (var ii = 0; ii < Ntimes; ii++) {
+		if ( binFeH[ii] >= 0 && binFeH[ii] < nFeHbins )
+		    out[binFeH[ii]]= out[binFeH[ii]] + tSFRlnt[ii];
+	    }
+	    // Normalize
+	    out= out.map(x => x/out.reduce((a, b) => a + b, 0)/dFeH);
+	    return [(Array.apply(null, {length: nFeHbins})
+		     .map(Number.call, Number)
+		     .map(x => FeHmin+dFeH/2.+x*(FeHmax-FeHmin)/nFeHbins)),
+		    out];
+	},
+	Fe_H_DF(dFeH,FeHmin,FeHmax,Ntimes,min_age,max_age) {
+	    // Set defaults
+	    dFeH= ((typeof dFeH !== 'undefined') ? 
+		   dFeH : _OneZone_defaults['dFeH']);
+	    FeHmin= ((typeof FeHmin !== 'undefined') 
+		     ? FeHmin : _OneZone_defaults['FeHmin']);
+	    FeHmax= ((typeof FeHmax !== 'undefined') 
+		     ? FeHmax : _OneZone_defaults['FeHmax']);
+	    return this._calc_XDF(t => this.Fe_H(t),
+				  dFeH,FeHmin,FeHmax,Ntimes,min_age,max_age);
+	},
+	O_H_DF(dOH,OHmin,OHmax,Ntimes,min_age,max_age) {
+	    // Set defaults
+	    dOH= ((typeof dOH !== 'undefined') ? 
+		  dOH : _OneZone_defaults['dOH']);
+	    OHmin= ((typeof OHmin !== 'undefined') 
+		     ? OHmin : _OneZone_defaults['OHmin']);
+	    OHmax= ((typeof OHmax !== 'undefined') 
+		     ? OHmax : _OneZone_defaults['OHmax']);
+	    return this._calc_XDF(t => this.O_H(t),
+				  dOH,OHmin,OHmax,Ntimes,min_age,max_age);
+	},
+	O_Fe_DF(dOFe,OFemin,OFemax,Ntimes,min_age,max_age) {
+	    // Set defaults
+	    dOFe= ((typeof dOFe !== 'undefined') ? 
+		  dOFe : _OneZone_defaults['dOFe']);
+	    OFemin= ((typeof OFemin !== 'undefined') 
+		     ? OFemin : _OneZone_defaults['OFemin']);
+	    OFemax= ((typeof OFemax !== 'undefined') 
+		     ? OFemax : _OneZone_defaults['OFemax']);
+	    return this._calc_XDF(t => this.O_Fe(t),
+				  dOFe,OFemin,OFemax,Ntimes,min_age,max_age);
+	},
     };
     Kimmy.OneZone.ozclass.init.prototype= Kimmy.OneZone.ozclass;
 })(window || this);
