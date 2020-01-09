@@ -1,5 +1,5 @@
-(function(window) {
-    var Kimmy = window.Kimmy = {};
+(function() {
+    var Kimmy = {};
 
     ////////////// OneZone model from Weinberg et al. (2017)  /////////////////
     var _OneZone_defaults= {'eta':2.5,
@@ -405,4 +405,10 @@ tau_SFE = ${this._tau_SFE}`;
 	},
     };
     Kimmy.OneZone.ozclass.init.prototype= Kimmy.OneZone.ozclass;
-})(window || this);
+
+    // Export module for node.js and browser
+    if (typeof module !== 'undefined' && typeof module.exports !== 'undefined')
+	module.exports = Kimmy;
+    else
+	window.Kimmy = Kimmy;
+})();
