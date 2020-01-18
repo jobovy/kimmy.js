@@ -29,7 +29,7 @@
                             'OFemax':    0.5,
                             'Ntimes':    2001,
                             'min_age':   0.001,//Gyr
-                            'max_age':   12.,  //Gyr
+                            'max_age':   12.5,  //Gyr
     }
 
     Kimmy.OneZone = function (eta,
@@ -355,10 +355,11 @@ tau_SFE = ${this._tau_SFE}`;
 	    var tSFRlnt;
 	    if ( this.sfh == 'exp' )
 		tSFRlnt= times.map(x => x*Math.exp(-x/this.tau_SFH));
+	    else
+		tSFRlnt= times.map(x => x*x*Math.exp(-x/this.tau_SFH));	
 	    var binFeH= tX.map(x => Math.round((x-FeHmin)/dFeH));
 	    // An array of zeros for accumulating the results
 	    var out= (Array.apply(null, {length: nFeHbins}).map(x=>0.));
-
 	    for (var ii = 0; ii < Ntimes; ii++) {
 		if ( binFeH[ii] >= 0 && binFeH[ii] < nFeHbins )
 		    out[binFeH[ii]]= out[binFeH[ii]] + tSFRlnt[ii];
