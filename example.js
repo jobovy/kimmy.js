@@ -19,4 +19,6 @@ var FeH= oz.Fe_H(times);
 console.log(FeH[Ntimes-1],OFe[Ntimes-1]);
 // Get the [Fe/H] distribution
 var FeH_dist= oz.Fe_H_DF(0.1,-3.5,1.0); // inputs are dFeH, FeHmin, FeHmax
-console.log(FeH_dist);
+// Print bins and DF
+console.log(FeH_dist[0]);
+console.log(FeH_dist[1]);
