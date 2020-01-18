@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/jobovy/kimmy.js/issues"
   },
-  "homepage": "https://github.com/jobovy/kimmy.js#readme"
+  "homepage": "https://github.com/jobovy/kimmy.js#readme",
+  "runkitExampleFilename": "example.js"
 }

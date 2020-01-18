@@ -38,7 +38,7 @@ the [O/Fe] vs. [Fe/H] sequence, do
 // Define a logarithmically-spaced array of times to compute the evolution at
 var Ntimes= 51;
 var min_age= 0.001; // Gyr
-var max_age= 12.; // Gyr
+var max_age= 12.5; // Gyr
 var log10_min_age= Math.log10(min_age);
 var log10_max_age= Math.log10(max_age);
 var times= Array.apply(null, {length: Ntimes}).map(Number.call, Number).map\
