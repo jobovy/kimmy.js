@@ -9,7 +9,7 @@ Javascript version of kimmy, Galactic chemical evolution in python
 This is a stand-alone Javascript version of the
 [kimmy](https://github.com/jobovy/kimmy) Python library for Galactic
 chemical evolution. ``kimmy.js`` replicates all of the functionality
-in ``kimmy.py`` as of 12/25/2019.
+in ``kimmy.py`` as of 01/17/2020.
 
 ## Author
 
@@ -46,6 +46,12 @@ var times= Array.apply(null, {length: Ntimes}).map(Number.call, Number).map\
 // Obtain the evolution
 var OFe= oz.O_Fe(times);
 var FeH= oz.Fe_H(times);
+```
+
+You can also compute the distribution of [Fe/H], [O/H], and [O/Fe],
+for example as
+```
+var FeH_dist= oz.Fe_H_DF(0.1,-3.5,1.0); // inputs are dFeH, FeHmin, FeHmax
 ```
 
 You can directly update the main parameters of the model and the model
