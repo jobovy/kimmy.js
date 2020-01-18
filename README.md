@@ -21,9 +21,9 @@ Load the library, e.g., from ``jsDelivr`` using
 ```
 <script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy"></script>
 ```
-for the latest version or specify the version with (update ``1.0.1`` to later versions as necessary)
+for the latest version or specify the version with (update ``1.1.0`` to later versions as necessary)
 ```
-<script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy@1.0.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy@1.1.0"></script>
 ```
 
 Currently, the only implemented feature is a simple one-zone chemical
@@ -53,6 +53,8 @@ for example as
 ```
 var FeH_dist= oz.Fe_H_DF(0.1,-3.5,1.0); // inputs are dFeH, FeHmin, FeHmax
 ```
+This returns a list with the element being the [Fe/H] bins and the
+second the distribution.
 
 You can directly update the main parameters of the model and the model
 will be re-computed. For example, to change the outflow parameter
