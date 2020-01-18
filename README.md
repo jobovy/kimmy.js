@@ -22,9 +22,9 @@ Load the library, e.g., from ``jsDelivr`` using
 ```
 <script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy"></script>
 ```
-for the latest version or specify the version with (update ``1.1.0`` to later versions as necessary)
+for the latest version or specify the version with (update ``1.1.2`` to later versions as necessary)
 ```
-<script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/@jobovy/kimmy@1.1.2"></script>
 ```
 
 Currently, the only implemented feature is a simple one-zone chemical
