@@ -67,3 +67,14 @@ var FeH= oz.Fe_H(times);
 ```
 Keep in mind that once you change a parameter, it remains changed in
 the model.
+
+## Publishing a new version of this package
+
+Follow the following steps:
+
+* Update the version in ``package.json``
+* Create a new git tag for this version: ``git tag vX.X.X``
+* Package up for npm: ``npm pack``, check that no extraneous files are included
+* Log into npm: ``npm login``
+* Publish to npm: ``npm publish``
+* Done!
